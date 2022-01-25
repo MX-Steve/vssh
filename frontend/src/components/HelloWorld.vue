@@ -72,8 +72,9 @@ export default {
     },
     p_host() {
       console.log(this.form);
+      let host = window.location.host.split(":")[0]
       axios
-        .post("http://127.0.0.1:8080/api/chat/p-host", this.form)
+        .post(`http://${host}:8080/api/chat/p-host`, this.form)
         .then((res) => {
           console.log(res);
           if (res.data.code === 200) {
@@ -96,7 +97,8 @@ export default {
     } else {
       this.id = id;
       //实例化一个websocket，用于和django江湖
-      this.terminalSocket = new WebSocket(`ws://127.0.0.1:8000/web/${id}/`);
+      let host = window.location.host.split(":")[0]
+      this.terminalSocket = new WebSocket(`ws://${host}:8000/web/${id}/`);
       //获取到后端传回的信息
       this.terminalSocket.onmessage = (res) => {
         console.log(res);
