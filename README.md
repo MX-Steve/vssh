@@ -2,8 +2,11 @@
 ## 1. 搭建
 ### 1. docker 方式
 ```bash
+git clone git@github.com:MX-Steve/vssh.git
 docker pull mxsteve2021/vssh:v1.0
 docker run -itd -p 8080:8080 -p 8000:8000 --restart always --name vir_ssh mxsteve2021/vssh:v1.0
+docker cp vssh vir_ssh:/data/vssh
+docker exec -it vssh /bin/bash
 docker exec vir_ssh bash -c "sh /data/vssh/deploy/init.sh"
 ```
 ### 2. 本地方式
